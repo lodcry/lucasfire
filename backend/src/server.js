@@ -15,7 +15,7 @@ const game = require('./game');
   const app = express();
   app.set('trust proxy', 1);
   const o = process.env.FRONTEND_ORIGIN;
-  app.use(cors({ origin: o ? o.split(',').map((s) => s.trim()) : '*' }));
+  app.use(cors());
   app.use(express.json({ limit: '2mb' }));
   app.get('/health', (_q, s) => s.json({ ok: true, t: Date.now() }));
   app.use('/api', require('./routes'));

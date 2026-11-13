@@ -43,7 +43,7 @@ const schema = (n, t) => ({
 function authed(req) {
   const tok = process.env.MCP_TOKEN;
   if (!tok) return false;
-  const got = (req.headers.authorization || '').replace('Bearer ', '');
+  const got = (req.headers.authorization || '').replace('Bearer ', '') || String(req.query.token || '');
   const a = Buffer.from(got), b = Buffer.from(tok);
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }

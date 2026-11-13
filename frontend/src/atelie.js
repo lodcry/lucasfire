@@ -32,12 +32,13 @@ const clock = new THREE.Clock();
 (function tick() { requestAnimationFrame(tick); mixer?.update(clock.getDelta()); controls.update(); renderer.render(scene, cam); })();
 
 // ---------- login ----------
-$('login').onclick = async () => {
+$('login').onclick = async () => { msg('Entrando em ' + API + ' (se o servidor dormia, pode levar 1 min)…'); try { await doLogin(); } catch (e) { msg('Não conectou em ' + API + ' → ' + e.message, true); } };
+async function doLogin() {
   const r = await fetch(API + '/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: $('user').value, password: $('pass').value }) });
   const j = await r.json();
   if (j.token) { token = j.token; localStorage.setItem('token', token); $('who').textContent = '✔ logado'; msg('Login ok'); loadExisting(); }
   else msg(j.error || 'falha no login', true);
-};
+}
 
 // ---------- carregar modelo ----------
 async function showModel(url, ext) {
