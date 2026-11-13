@@ -48,8 +48,8 @@ function authed(req) {
   return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
-r.get('/', (_q, s) => s.sendStatus(405));
-r.post('/', async (req, res) => {
+r.get('/:token?', (_q, s) => s.sendStatus(405));
+r.post('/:token?', async (req, res) => {
   if (!authed(req)) return res.status(401).json({ error: 'não autorizado' });
   const { id, method, params } = req.body || {};
   const ok = (result) => res.json({ jsonrpc: '2.0', id, result });
