@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ateliê</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#161a20;color:#e8edf3;display:flex;flex-direction:column;height:100vh}
+#view{height:38vh;min-height:220px;background:#0b0e12}
+#view canvas{display:block;width:100%;height:100%}
+#panel{flex:1;overflow:auto;padding:10px;font-size:14px}
+fieldset{border:1px solid #334;border-radius:8px;margin:0 0 10px;padding:8px}
+legend{color:#7cf;font-weight:700}
+input,select,button{font-size:14px;padding:6px 8px;border-radius:6px;border:1px solid #445;background:#222a35;color:#fff;margin:2px}
+button{background:#2b7;color:#000;font-weight:700;border:0}
+button.s{background:#345;color:#fff}
+.row{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse}td{padding:1px}td input{width:62px}
+a{color:#8cf}
+</style>
+<script type="importmap">
+{"imports":{
+ "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+ "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="view"></div>
+<div id="panel">
+  <fieldset><legend>Login admin</legend>
+    <div class="row"><input id="user" value="lucasbeats" size="10"><input id="pass" type="password" placeholder="senha" size="10"><button id="login">Entrar</button><span id="who"></span><a href="index.html">← jogo</a></div>
+  </fieldset>
+  <fieldset><legend>1. Modelo (GLB / GLTF / FBX)</legend>
+    <div class="row"><input id="file" type="file" accept=".glb,.gltf,.fbx"></div>
+    <div class="row">Nome <input id="name" placeholder="default" size="10">
+      Tipo <select id="type"><option>character</option><option>weapon</option><option>vehicle</option><option>building</option><option>prop</option><option>terrain</option></select>
+      Escala <input id="scale" type="number" step="0.01" value="1" style="width:70px">
+      Giro° <input id="yaw" type="number" step="90" value="0" style="width:60px"></div>
+    <div class="row"><span style="opacity:.7">Existentes:</span><span id="existing"></span></div>
+  </fieldset>
+  <fieldset><legend>2. Clipes encontrados</legend><div id="clips">—</div></fieldset>
+  <fieldset><legend>3. Ações do jogo (clipe + tecla)</legend>
+    <div class="row"><button class="s" id="auto">Detectar auto</button><button class="s" id="addact">+ ação extra</button></div>
+    <table id="acts"></table>
+  </fieldset>
+  <fieldset><legend>4. Hitboxes por parte do corpo</legend>
+    <div class="row"><button class="s" id="genhb">Gerar pelo esqueleto</button><span id="hands" style="opacity:.8"></span></div>
+    <table id="hbs"></table>
+    <div style="opacity:.6;font-size:12px">y0/y1 = altura a partir dos pés (m). mult = multiplicador de dano (cabeça 3 = tiro na cabeça ×3).</div>
+  </fieldset>
+  <button id="save" style="width:100%;padding:12px">SALVAR NO JOGO</button>
+  <div id="msg" style="margin-top:8px"></div>
+</div>
+<script type="module" src="src/atelie.js"></script>
+</body>
+</html>

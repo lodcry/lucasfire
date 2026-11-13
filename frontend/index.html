@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Lucas FPS</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:system-ui,sans-serif;color:#fff;touch-action:none}
+canvas{display:block}
+#hud>div{position:fixed;text-shadow:0 0 4px #000;pointer-events:none}
+#fps{top:8px;left:8px;font-size:13px}
+#hp{bottom:14px;left:16px;font-size:28px;font-weight:700}
+#score{top:8px;right:10px;text-align:right;font-size:13px}
+#feed{top:36px;left:8px;font-size:13px}
+#cross{top:50%;left:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#fff9}
+#hm{top:50%;left:50%;margin:-16px;font-size:30px;opacity:0;transition:opacity .15s}
+#dmg{inset:0;background:radial-gradient(transparent 40%,#f00a);opacity:0;transition:opacity .3s}
+#menu{position:fixed;inset:0;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:5}
+#menu input,#menu button{font-size:18px;padding:10px 16px;border-radius:8px;border:0}
+#menu button{background:#2d7;color:#000;font-weight:700}
+#menu a{color:#8cf;font-size:14px}
+.btn{display:none;position:fixed;width:70px;height:70px;border-radius:50%;background:#fff3;border:2px solid #fff6;align-items:center;justify-content:center;font-size:13px;z-index:4;user-select:none}
+body.touch .btn{display:flex}
+#bfire{right:24px;bottom:110px}#bjump{right:110px;bottom:40px}#bview{right:24px;top:70px;width:50px;height:50px}
+</style>
+<script type="importmap">
+{"imports":{
+ "three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+ "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="hud">
+  <div id="fps">-- fps</div><div id="hp">100</div><div id="score"></div><div id="feed"></div>
+  <div id="cross"></div><div id="hm">✖</div><div id="dmg"></div>
+</div>
+<div class="btn" id="bfire">FOGO</div><div class="btn" id="bjump">PULAR</div><div class="btn" id="bview">1ª/3ª</div>
+<div id="menu">
+  <h1 style="margin:0">Lucas FPS</h1>
+  <input id="name" maxlength="16" placeholder="Seu nome">
+  <button id="play">JOGAR</button>
+  <div style="font-size:13px;opacity:.8;text-align:center">WASD mover · Shift correr · Espaço pular · V câmera 1ª/3ª · Clique atirar</div>
+  <a href="atelie.html">Abrir Ateliê</a>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
